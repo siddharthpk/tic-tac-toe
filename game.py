@@ -1,29 +1,65 @@
 import math
 
 class TicTacToe():
-    # Constructor to initialize the board and the current winner
+    """
+    A class representing the Tic Tac Toe game.
+
+    Attributes:
+    - board (list): A list representing the Tic Tac Toe board.
+    - current_winner (str): The current winner of the game.
+
+    Methods:
+    - __init__(self): Initializes the board and the current winner.
+    - make_board(): Returns the board boundaries.
+    - print_board(self): Prints the Tic Tac Toe board.
+    - print_board_nums(): Prints the Tic Tac Toe board's numbers for visualization.
+    - make_move(self, square, letter): Makes a move on the Tic Tac Toe board.
+    - winner(self, square, letter): Determines if a player has won the game.
+    - empty_squares(self): Returns the empty squares on the board.
+    - num_empty_squares(self): Returns the number of empty squares on the board.
+    - available_moves(self): Returns the available moves on the board.
+    """
     def __init__(self) -> None:
         self.board  = self.make_board()
         self.current_winner = None
     
-    # Returns the board boundaries  
     @staticmethod
     def make_board():
+        """
+        Returns a list representing the Tic Tac Toe board.
+
+        Returns:
+        - list: A list representing the Tic Tac Toe board.
+        """
         return [ ' ' for _ in range(9)]
     
-    # Prints the board, uses make_board()
     def print_board(self):
+        """
+        Prints the Tic Tac Toe board.
+        """
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print('| ' + ' | '.join(row) + ' |')
 
-    # Prints the board's numbers for visualization
     @staticmethod
     def print_board_nums():
+        """
+        Prints the Tic Tac Toe board's numbers for visualization.
+        """
         number_board = [[str(i) for i in range((j*3),(j+1)*3)] for j in range(3)]
         for row in number_board:
             print(print('| ' + ' | '.join(row) + ' |'))
 
     def make_move(self, square, letter):
+        """
+        Makes a move on the Tic Tac Toe board.
+
+        Args:
+        - square (int): The index of the square to make a move on.
+        - letter (str): The letter ('X' or 'O') to make a move with.
+
+        Returns:
+        - bool: True if the move is valid, False otherwise.
+        """
         if self.board[square] == ' ':
             self.board[square] = letter
             if self.winner(square, letter):
@@ -33,6 +69,16 @@ class TicTacToe():
         return False
     
     def winner(self, square, letter):
+        """
+        Determines if a player has won the game by checking the row, column, and diagonal containing the given square.
+
+        Args:
+        - square (int): The index of the square to check.
+        - letter (str): The letter ('X' or 'O') of the player to check for a win.
+
+        Returns:
+        - bool: True if the player has won, False otherwise.
+        """
         # Check the row
         row_idx = math.floor(square/3)
         row = self.board[row_idx*3:(row_idx+1)*3]
@@ -46,30 +92,46 @@ class TicTacToe():
         # Print winner tiles column
         if all([s == letter] for s in column):
             return True
-        
+
         # Check if winner tiles on a diagnol
         if square%2 == 0:
             diag1 = [self.board[i] for i in [0,4,8]]
             # Print first Diagonal
             if all([s == letter] for s in diag1):
                 return True
-            
+
             diag2 = [self.board[i] for i in [2,4,6]]
             # Print second Diagonal
             if all([s == letter] for s in diag2):
                 return True
-            
+
         return False
     
-    # Returns the empty squares on the board
     def empty_squares(self):
+        """
+        Returns the empty squares on the board.
+
+        Returns:
+        - bool: True if there are empty squares on the board, False otherwise.
+        """
         return ' ' in self.board
-    # Returns the number of empty squares on the board
+
     def num_empty_squares(self):
+        """
+        Returns the number of empty squares on the board.
+
+        Returns:
+        - int: The number of empty squares on the board.
+        """
         return self.board.count(' ')
     
-    # Returns the available moves on the board
     def available_moves(self):
+        """
+        Returns the available moves on the board.
+
+        Returns:
+        - list: A list of available moves on the board.
+        """
         return [ i for i, x in enumerate(self.board) if x == " "] 
         # enumerate() allow to iterate through the object and keep track of the index of each element
 
