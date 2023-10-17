@@ -21,6 +21,9 @@ class TicTacToe():
     - num_empty_squares(self): Returns the number of empty squares on the board.
     - available_moves(self): Returns the available moves on the board.
     """
+
+    
+
     def __init__(self) -> None:
         self.board  = self.make_board()
         self.current_winner = None
@@ -140,7 +143,7 @@ class TicTacToe():
 def play(game, X_Player, O_Player, print_game=True):
     if print_game:
         game.print_board_nums()
-        
+    
     letter = 'X'
     while game.empty_squares():
         if letter == 'O':
@@ -163,7 +166,8 @@ def play(game, X_Player, O_Player, print_game=True):
         print('It\'s a tie!')
     
 if __name__ == 'main':
-    X_Player = AIComputerPlayer('X')
-    O_Player = HumanPlayer('O')
-    game = TicTacToe()
-    play(game, X_Player, O_Player, print_game=True)
+    x_Player = AIComputerPlayer('X')
+    o_Player = HumanPlayer('O')
+    gamePlay = TicTacToe()
+    play(gamePlay, x_Player, x_Player, print_game=True)
+   
