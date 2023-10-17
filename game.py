@@ -165,7 +165,7 @@ def play(game, X_Player, O_Player, print_game=True):
     if print_game:
         print('It\'s a tie!')
     
-if __name__ == 'main':
+if __name__ == '__main__':
     x_Player = AIComputerPlayer('X')
     o_Player = HumanPlayer('O')
     gamePlay = TicTacToe()
