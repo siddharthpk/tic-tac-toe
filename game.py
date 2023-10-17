@@ -70,6 +70,7 @@ class TicTacToe():
     
     # Returns the available moves on the board
     def available_moves(self):
-        return [ i for i, x in enumerate(self.board) if x == " "]
+        return [ i for i, x in enumerate(self.board) if x == " "] 
+        # enumerate() allow to iterate through the object and keep track of the index of each element
 
     
