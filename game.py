@@ -61,4 +61,15 @@ class TicTacToe():
             
         return False
     
+    # Returns the empty squares on the board
+    def empty_squares(self):
+        return ' ' in self.board
+    # Returns the number of empty squares on the board
+    def num_empty_squares(self):
+        return self.board.count(' ')
+    
+    # Returns the available moves on the board
+    def available_moves(self):
+        return [ i for i, x in enumerate(self.board) if x == " "]
+
     
