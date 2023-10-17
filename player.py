@@ -52,6 +52,10 @@ class ComputerPlayer(Player):
     """
     def __init__(self, letter) -> None:
         super().__init__(letter)
+    
+    def choose_move(self, game):
+        square = random.choice(game.available_moves()))=
+        return square
 
 class AIComputerPlayer(Player):
     """
@@ -62,3 +66,11 @@ class AIComputerPlayer(Player):
     """
     def __init__(self, letter) -> None:
         super().__init__(letter)
+
+    def choose_move(self, game):
+        if len(game.available_moves()) == 9:
+            square = random.choice(game.available_moves())
+        else:
+            square = self.minimax(game,self.letter)['position']
+        return square
+    
