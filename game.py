@@ -1,4 +1,6 @@
 import math
+import time
+from player import HumanPlayer, ComputerPlayer, AIComputerPlayer
 
 class TicTacToe():
     """
@@ -135,4 +137,33 @@ class TicTacToe():
         return [ i for i, x in enumerate(self.board) if x == " "] 
         # enumerate() allow to iterate through the object and keep track of the index of each element
 
+def play(game, X_Player, O_Player, print_game=True):
+    if print_game:
+        game.print_board_nums()
+        
+    letter = 'X'
+    while game.empty_squares():
+        if letter == 'O':
+            square = O_Player.choose_move(game)
+        else:
+            square = X_Player.choose_move(game)
+
+        if game.make_move(square, letter):
+            if print_game:
+                print(letter + ' makes a move to square {}'.format(square))
+                game.print_board()
+                print('')
+            if game.current_winner:
+                if print_game:
+                    print(letter + ' wins!')
+                return letter
+            letter = 'O' if letter == 'X' else 'X'
+        time.sleep(0.8)
+    if print_game:
+        print('It\'s a tie!')
     
+if __name__ == 'main':
+    X_Player = AIComputerPlayer('X')
+    O_Player = HumanPlayer('O')
+    game = TicTacToe()
+    play(game, X_Player, O_Player, print_game=True)
