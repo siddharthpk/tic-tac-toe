@@ -36,7 +36,7 @@ class TicTacToe():
         Returns:
         - list: A list representing the Tic Tac Toe board.
         """
-        return [ ' ' for _ in range(9)]
+        return [' ' for _ in range(9)]
     
     def print_board(self):
         """
@@ -69,7 +69,6 @@ class TicTacToe():
             self.board[square] = letter
             if self.winner(square, letter):
                 self.current_winner = letter
-            
             return True
         return False
     
@@ -161,13 +160,13 @@ def play(game, X_Player, O_Player, print_game=True):
                     print(letter + ' wins!')
                 return letter
             letter = 'O' if letter == 'X' else 'X'
-        time.sleep(0.8)
+        time.sleep(.8)
     if print_game:
         print('It\'s a tie!')
     
 if __name__ == '__main__':
-    x_Player = AIComputerPlayer('X')
-    o_Player = HumanPlayer('O')
+    x_Player = HumanPlayer('X')
+    o_Player = AIComputerPlayer('O')
     gamePlay = TicTacToe()
     play(gamePlay, x_Player, x_Player, print_game=True)
    

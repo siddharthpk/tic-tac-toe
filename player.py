@@ -72,6 +72,7 @@ class AIComputerPlayer(Player):
             square = random.choice(game.available_moves())
         else:
             square = self.minimax(game,self.letter)['position']
+        print(f"{self.letter}'s move: {square}")
         return square
     
     def minimax(self, state, player):
@@ -83,9 +84,9 @@ class AIComputerPlayer(Player):
             return {
                 'position' : None,
                 'score':utility_Fn[1]*(state.num_empty_squares()+ 1) if min_Player == max_Player 
-                        else utility_Fn[-1]*(state.num_empty_squares() + 1)
+                        else utility_Fn[2]*(state.num_empty_squares() + 1)
             }
-        elif not state.empty_squares():
+        elif not state.empty_squares() or state.current_winner is not None:
             return {
                 'position' : None,
                
